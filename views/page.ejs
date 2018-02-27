@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Video Download</title>
+           <style type="text/css">
+       
+        body{
+          background-color: black;
+        }
+        
+               
+        .title{
+     
+          background-image: url(/banner.jpg) ; 
+          background-size: cover; 
+        -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+        background-position: center; 
+        height: 450px;
+        width:100%;
+        vertical-align: middle;
+       position:fixed;   
+        top: 0; 
+        left: 0; 
+        overflow: hidden;
+}
+
+#blank{
+  height : 465px;
+	}   
+	
+	#display{
+            margin-top:15px;
+            margin-bottom:15px;
+    text-align:center;
+        }
+        
+        .vid{
+                    z-index:1000;
+           position:relative;
+    display: inline-block;
+            height : 500px;
+            width:auto;
+              margin-left: auto;
+    margin-right: auto;
+      border:1px solid #434343;
+        }
+        
+         
+        </style>
+        
+    </head>
+    
+    <body>
+  <!--      <div class = "title"></div>-->
+  <!--<div id="blank"></div>-->
+  
+        <div id = "display">
+  <video class="vid" width="1280" height="720" controls>
+  <source src="<%="https:\//webdev01-csh7183.c9users.io/videos/"+fnVar+".mp4"%>" type="video/mp4">
+
+  Your browser does not support the video tag.
+</video>
+   
+     </div>
+      
+    </body>
+    
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slow Motion Gallery</title>
+        
+<style type="text/css">
+
+ body{
+          background-color: black;
+         
+        }
+
+@media only screen and (max-width : 1100px) {
+   /* Smartphone view: 1 tile */
+
+   
+   .container {
+    position: relative;
+      width: 100%;
+    overflow: hidden;
+    float: left;
+   
+    }
+}
+
+@media only screen and (max-width : 2000px) and (min-width : 1101px) {
+   /* Tablet view: 2 tiles */
+
+   
+   .container {
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+    float: left;
+   
+    }
+   
+   
+}
+
+.title{
+    width:100%;
+     overflow: hidden;
+}
+
+#banner{
+    max-width:100%;
+    height:auto;
+    vertical-align: middle;
+
+
+	}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+
+    
+}
+
+.middle {
+
+
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.qr {
+
+
+  background-color:  white;
+
+  font-size: 16px;
+  padding: 16px 16px;
+}
+.qr img{
+  
+}
+.description{
+    color:#AAAAAA;
+    padding-top:15px;
+}
+
+
+</style>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+
+<!-- Latest compiled and minified CSS -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+
+<!-- Optional theme -->
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+
+<!-- Latest compiled and minified JavaScript -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+<script type="text/javascript" src="qrcode.js"></script>
+ <!--<script type="text/javascript" src="css3-mediaqueries.min.js"></script>-->
+  
+    </head>
+    
+     <body>
+
+
+ 
+<!--<div class = "title">-->
+<!--    <img id ="banner" src ="banner.jpg"></img>-->
+    
+<!--</div>-->
+    
+    
+    
+  <% for (var i = 0; i <  obj.length; i++) {%>
+  
+  
+  <div class="container">
+<img src="<%="videos/"+obj[i].tb%>" alt="Avatar" class="image" style="width:100%">
+              
+              
+  <div class="middle">
+ 
+   <div class="qr">
+  
+    
+    
+   <script type="text/javascript">
+ var element = '<div>top div</div>'
+           var qrcode = new QRCode(document.querySelectorAll(".qr")[<%=i%>], {
+                 text: "<%="https:\//webdev01-csh7183.c9users.io/page/"+obj[i].fn.split(".")[0]%>",
+                width: 280,
+                height: 280,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.L
+                    });    
+
+   </script>
+      
+     </div>
+      <h4 class="description">請掃描 QRCODE 下載影片</h4>
+  </div>
+  </div>
+
+  
+  
+<% }%>
+ 
+    
+    
+   
+     
+   
+<!-- <script type="text/javascript">-->
+<!--  var ths = document.querySelectorAll(".text");-->
+<!--ths.forEach(function(th){-->
+<!--    th.addEventListener("click", function() {-->
+        
+<!--         ths.forEach(function(t){-->
+<!--            t.children[0].classList.remove('hide');-->
+<!--            if(t.children.length>2){-->
+<!--                t.children[3].classList.add('hide');-->
+<!--              }-->
+<!--        })-->
+        
+        
+<!--          if(th.children.length>2){-->
+<!--                th.children[3].classList.remove('hide');-->
+                
+<!--            }else{-->
+                        
+<!--                var qrcode = new QRCode(this, {-->
+ <!--                text: this.children[1].textContent,//here-->
+<!--                width: 200,-->
+<!--                height: 200,-->
+<!--                colorDark : "#000000",-->
+<!--                colorLight : "#ffffff",-->
+<!--                correctLevel : QRCode.CorrectLevel.L-->
+<!--                    });    -->
+                
+<!--                  th.children[3].classList.add('qr');-->
+<!--            }-->
+        
+       
+<!--        this.children[0].classList.add('hide');-->
+      
+         
+<!--    });-->
+  
+<!--});-->
+
+<!--</script>-->
+
+
+ </body>
+    
+</html>
