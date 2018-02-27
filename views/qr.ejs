@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>QRcode</title>
+           <style type="text/css">
+       
+        body{
+          background-color: black;
+        }
+        
+             .qr {
+            /*position:fixed; */
+       
+     padding: 40px;
+     background-color:white;
+     position:relative;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+ 
+    border:1px solid #424242;
+        }
+        
+        #display{
+            margin-top:200px;
+            margin-bottom:100px;
+     
+    text-align:center;
+        }
+h1{
+    color:white;
+}
+         
+        </style>
+        <script type="text/javascript" src="/qrcode.js"></script>
+    </head>
+    
+    <body>
+        <div id="display">
+ <div class="qr">
+  
+    
+    
+   <script type="text/javascript">
+   /*https://samsung2018.api-tronk.tw/login.php?video=*/
+   /*"http:\//35.201.223.147*/
+
+           var qrcode = new QRCode(document.querySelector(".qr"), {
+                text: "<%="https:\//samsung2018.api-tronk.tw/login.php?video="+linkVar%>",
+                width: 400,
+                height: 400,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.L
+                    });    
+
+   </script>
+      
+     </div>
+      <h1 class="description">請掃描 QRCODE 取得影片</h1>
+  </div>
+    </body>
+    
+</html>
