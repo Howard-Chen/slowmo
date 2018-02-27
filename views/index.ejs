@@ -2,14 +2,60 @@
 <html>
     <head>
       <title>Video Upload</title>
+        <style type="text/css">
+       
+        body{
+          background-color: black;
+          color:white;
+          
+        }
+        
+        input{
+              background-image: url(/banner.jpg) ; 
+             background-color: #4CAF50; /* Green */
+    border: none;
+    color: black;
+    padding: 100px 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50 px;
+        }
+        
+       #file-upload{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+.custom-file-upload {
+      background-image: url(/banner.jpg) ; 
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 100px 200px;
+    cursor: pointer;
+}
+        
+        
+        
+        
+        </style>
     </head>
     
 <body>
  <h1>Video Upload</h1>
+ 
+
  <form action="/videoUpload" method="post" enctype="multipart/form-data">
     <h2>File upload</h2>
-    <input type="file" name="video">
-    <input type="submit" value="submit">
+     <label for="file-upload" class="custom-file-upload">
+    <i class="fa fa-cloud-upload"></i> </label>
+    <input id="file-upload" type="file" name="video">
+    <input type="submit" value="">
 </form>
     
 </body>

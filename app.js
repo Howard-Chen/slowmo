@@ -100,15 +100,22 @@ app.post('/videoUpload', upload.single('video'), createVideoThumbnail, writeToDa
 
     var file = req.file;
     //createThumbnail(file.path,file.filename, writeToData);
-
-
-    console.log('MIMEType：%s', file.mimetype);
+ 
+   // console.log('MIMEType：%s', file.mimetype);
     //console.log('Originalname：%s', file.originalname);
-    console.log('File.size：%s', file.size);
+    //console.log('File.size：%s', file.size);
     //console.log('File.path：%s', file.path);
-    console.log('File.name：%s', file.filename);
-    res.send("Upload Successful");
+   // console.log('File.name：%s', file.filename);
+    //res.render("qr",{linkVar:file.filename.split(".")[0]});
+    res.redirect("/qr/"+file.filename.split(".")[0]);
+    //res.send("Upload Successful");
     //res.end();
+
+});
+
+app.get("/qr/:link", function(req, res) {
+
+            res.render("qr", { linkVar: req.params.link });
 
 });
 
