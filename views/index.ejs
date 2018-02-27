@@ -11,8 +11,8 @@
         }
         
         input{
-              background-image: url(/banner.jpg) ; 
-             background-color: #4CAF50; /* Green */
+              
+            border: 1px solid #ccc;
     border: none;
     color: black;
     padding: 100px 200px;
@@ -20,6 +20,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 50 px;
+    cursor: pointer;
         }
         
        #file-upload{
@@ -33,7 +34,7 @@
     border: 0;
 }
 .custom-file-upload {
-      background-image: url(/banner.jpg) ; 
+     
     border: 1px solid #ccc;
     display: inline-block;
     padding: 100px 200px;
@@ -53,9 +54,9 @@
  <form action="/videoUpload" method="post" enctype="multipart/form-data">
     <h2>File upload</h2>
      <label for="file-upload" class="custom-file-upload">
-    <i class="fa fa-cloud-upload"></i> </label>
+    <i class="fa fa-cloud-upload"></i> 選擇影片</label>
     <input id="file-upload" type="file" name="video">
-    <input type="submit" value="">
+    <input type="submit" value="上傳影片">
 </form>
     
 </body>
