@@ -6,17 +6,19 @@ var multer = require('multer');
 var crypto = require("crypto");
 var mime = require('mime-types');
 var fs = require("fs");
-var jsonfile = require('jsonfile')
-var dataPath = 'data.json'
+var jsonfile = require('jsonfile');
+var dataPath = 'data.json';
+
 
 var ffmpeg = require('fluent-ffmpeg');
 var command = ffmpeg();
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, 'public/videos')
+        cb(null, 'public/videos');
     },
     filename: function(req, file, cb) {
+        
         crypto.randomBytes(1, function(err, raw) {
             if (err) {
                 console.log(err);
@@ -25,14 +27,13 @@ var storage = multer.diskStorage({
                 cb(null, getDateTime() + '-' + raw.toString('hex') + '.' + mime.extension(file.mimetype));
             }
         });
-
-
     }
-})
+    
+});
 
-var upload = multer({ storage: storage })
+var upload = multer({ storage: storage });
 
-app.set("view engine", "ejs");
+/*app.set("view engine", "ejs");*/
 
 var dir = path.join(__dirname, 'public');
 
@@ -48,6 +49,52 @@ app.get("/page/:fn",function(req,res){
 
 });
 
+function tanscodeVideo(req, res, next){
+       var filePath = req.file.path;
+    var fileName = req.file.filename.split(".")[0]+"-t.mp4";
+    
+      ffmpeg(filePath)
+                        .fps(30)
+                        .size('1280x720')
+                        .videoCodec('libx264')
+                        .videoBitrate('3000')
+                        .audioCodec('libmp3lame')
+                        .audioBitrate('128')
+                        .audioFrequency(48000)
+                        .save('public/videos/'+fileName)
+                        .on('error', function (err) {
+                                              console.log(err);
+                                            })
+                        
+                        .on('end', function () { 
+                            next();
+                        });
+}
+
+function deleteOriginal(req, res, next){
+       var filePath = req.file.path;
+  
+    
+    fs.unlink(filePath, function(error) {
+    if (error) {
+        throw error;
+    }
+    
+    console.log('Deleted original');
+    
+        fs.rename(filePath.split(".")[0]+"-t.mp4", filePath , function(err) {
+             if ( err ) console.log('ERROR: ' + err);
+             next();
+        });
+    
+});
+    
+    
+    
+  
+    
+}
+
 function createVideoThumbnail(req, res, next) {
     var filePath = req.file.path;
     var fileName = req.file.filename;
@@ -62,7 +109,7 @@ function createVideoThumbnail(req, res, next) {
         })
         .on('error', function(err, stdout, stderr) {
             console.log('Cannot process video: ' + err.message);
-            res.send("Upload Failed: ffmpeg: "+ + err.message)
+            res.send("Upload Failed: ffmpeg: "+ + err.message);
         })
         .screenshots({
             // Will take screens at 20%, 40%, 60% and 80% of the video 
@@ -77,7 +124,7 @@ function createVideoThumbnail(req, res, next) {
 
 function writeToData(req, res, next) {
     var fileName = req.file.filename;
-    var new_obj = { "fn": fileName, "tb": fileName.split(".")[0] + "-s.png" }
+    var new_obj = { "fn": fileName, "tb": fileName.split(".")[0] + "-s.png" };
 
     jsonfile.readFile(dataPath, function(err, obj) {
         if (err) throw err;
@@ -86,17 +133,17 @@ function writeToData(req, res, next) {
             jsonfile.writeFile(dataPath, obj, function(err) {
                 if (err) { console.error(err) }
                 else {
-                    console.log("file uploaded!")
+                    console.log("file uploaded!");
                     next();
                 }
-            })
+            });
 
         }
 
-    })
+    });
 }
 
-app.post('/videoUpload', upload.single('video'), createVideoThumbnail, writeToData, function(req, res) {
+app.post('/videoUpload', upload.single('video'),tanscodeVideo,deleteOriginal, createVideoThumbnail, writeToData, function(req, res) {
 
     var file = req.file;
     //createThumbnail(file.path,file.filename, writeToData);
