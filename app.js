@@ -33,11 +33,11 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-/*app.set("view engine", "ejs");*/
+app.set("view engine", "ejs");
 
 var dir = path.join(__dirname, 'public');
 
-app.use(express.static(dir));
+/*app.use(express.static(dir));*/
 
 app.get("/", function(req, res) {
     res.render("index");
