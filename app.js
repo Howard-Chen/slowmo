@@ -57,7 +57,7 @@ function tanscodeVideo(req, res, next){
                         .size('1280x720')
                         .videoCodec('libx264')
                         .videoBitrate('3000')
-                        .audioCodec('libfdk-aac')
+                        .audioCodec('libfdk_aac')
                         .audioBitrate('128')
                         .audioFrequency(48000)
                         .outputOptions('-preset ultrafast')
