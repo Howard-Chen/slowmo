@@ -1,55 +1,117 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Slow Motion Gallery</title>
+        <title>超慢動作影片牆</title>
         
 <style type="text/css">
 
- body{
+  body{
           background-color: black;
-         
+            font-family: 微軟正黑體,Microsoft JhengHei;
+           color: white;
         }
+        
+        
+        .header{
+    height:35%;
+   width:auto;
+   z-index:1;
+  overflow: hidden;
+  position:fixed;   
+  top: 0; 
+ left: 0;
+	right: 0;
+  background-color: black;
+      }
+        
+.title{
+     background-color: black;
+    z-index:1;
+   position:fixed;   
+   top: 35%; 
+ left: 0;
+	right: 0;
+   
+}
+h1{
+       text-align: center;
+      font-size:3em;
+      margin:20px;
 
-@media only screen and (max-width : 1100px) {
+}
+
+@media only screen and (max-width : 533px) {
    /* Smartphone view: 1 tile */
 
    
-   .container {
-    position: relative;
-      width: 100%;
-    overflow: hidden;
-    float: left;
+ #logo{
+			max-width: 60%;
+			height: auto;
+ position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
    
-    }
+	}
 }
 
-@media only screen and (max-width : 2000px) and (min-width : 1101px) {
+@media only screen and (max-width : 2000px) and (min-width : 534px) {
    /* Tablet view: 2 tiles */
 
    
-   .container {
+#logo{
+		
+			height: 100%;
+			width:auto;
+ position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+   
+	}
+
+}
+
+
+#blank{
+  height : 650px;
+	}
+      
+      .footer{
+  height:100px;
+  width:100%;
+  z-index:1;
+  overflow: hidden;
+  background-color: black;
+  position:fixed;   
+  bottom: 0; 
+  left: 0; 
+
+      }
+      
+       
+
+
+.waterfall{
+    width: 90%;
+    margin: auto;
+   
+}
+
+  .container {
     position: relative;
-    width: 50%;
+    width: 100%;
     overflow: hidden;
     float: left;
-   
+    margin: 10px 0px;
     }
-   
-   
-}
 
-.title{
-    width:100%;
-     overflow: hidden;
-}
-
-#banner{
-    max-width:100%;
-    height:auto;
-    vertical-align: middle;
-
-
-	}
+	
+	
 
 .image {
   opacity: 1;
@@ -95,36 +157,35 @@
   
 }
 .description{
-    color:#AAAAAA;
+    color:white;
     padding-top:15px;
 }
 
 
 </style>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 
-
-<!-- Latest compiled and minified CSS -->
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-
-<!-- Optional theme -->
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
-
-<!-- Latest compiled and minified JavaScript -->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 <script type="text/javascript" src="qrcode.js"></script>
- <!--<script type="text/javascript" src="css3-mediaqueries.min.js"></script>-->
+
   
     </head>
     
      <body>
 
 
- 
-<!--<div class = "title">-->
-<!--    <img id ="banner" src ="banner.jpg"></img>-->
-    
-<!--</div>-->
+  <div class = "header">
+        
+        
+            <img id ="logo" src ="logo.jpg"></img>
+     
+        
+       <div class = "title">
+         <h1>請點擊圖片掃描QRCODE</h1>
+        </div>
+        
+    </div>
+
+  <div id="blank"></div>
+    <div class="waterfall">
     
     
     
@@ -169,48 +230,9 @@
     
     
    
-     
+     </div>
+     <div class="footer"></div>
    
-<!-- <script type="text/javascript">-->
-<!--  var ths = document.querySelectorAll(".text");-->
-<!--ths.forEach(function(th){-->
-<!--    th.addEventListener("click", function() {-->
-        
-<!--         ths.forEach(function(t){-->
-<!--            t.children[0].classList.remove('hide');-->
-<!--            if(t.children.length>2){-->
-<!--                t.children[3].classList.add('hide');-->
-<!--              }-->
-<!--        })-->
-        
-        
-<!--          if(th.children.length>2){-->
-<!--                th.children[3].classList.remove('hide');-->
-                
-<!--            }else{-->
-                        
-<!--                var qrcode = new QRCode(this, {-->
- <!--                text: this.children[1].textContent,//here-->
-<!--                width: 200,-->
-<!--                height: 200,-->
-<!--                colorDark : "#000000",-->
-<!--                colorLight : "#ffffff",-->
-<!--                correctLevel : QRCode.CorrectLevel.L-->
-<!--                    });    -->
-                
-<!--                  th.children[3].classList.add('qr');-->
-<!--            }-->
-        
-       
-<!--        this.children[0].classList.add('hide');-->
-      
-         
-<!--    });-->
-  
-<!--});-->
-
-<!--</script>-->
-
 
  </body>
     

@@ -45,7 +45,6 @@ app.get("/", function(req, res) {
 
 app.get("/page/:fn",function(req,res){
     res.render("page.ejs",{fnVar:req.params.fn});
-  // console.log(req.params.name);
 
 });
 
@@ -58,9 +57,10 @@ function tanscodeVideo(req, res, next){
                         .size('1280x720')
                         .videoCodec('libx264')
                         .videoBitrate('3000')
-                        .audioCodec('libmp3lame')
+                        .audioCodec('libfdk-aac')
                         .audioBitrate('128')
                         .audioFrequency(48000)
+                        .outputOptions('-preset ultrafast')
                         .save('public/videos/'+fileName)
                         .on('error', function (err) {
                                               console.log(err);
@@ -80,7 +80,7 @@ function deleteOriginal(req, res, next){
         throw error;
     }
     
-    console.log('Deleted original');
+   /* console.log('Deleted original');*/
     
         fs.rename(filePath.split(".")[0]+"-t.mp4", filePath , function(err) {
              if ( err ) console.log('ERROR: ' + err);
@@ -104,7 +104,7 @@ function createVideoThumbnail(req, res, next) {
             //console.log('Will generate ' + filenames.join(', '))
         })
         .on('end', function() {
-            console.log('Screenshots taken');
+           /* console.log('Screenshots taken');*/
             next();
         })
         .on('error', function(err, stdout, stderr) {
@@ -133,7 +133,7 @@ function writeToData(req, res, next) {
             jsonfile.writeFile(dataPath, obj, function(err) {
                 if (err) { console.error(err) }
                 else {
-                    console.log("file uploaded!");
+                   /* console.log("file uploaded!");*/
                     next();
                 }
             });
@@ -152,7 +152,7 @@ app.post('/videoUpload', upload.single('video'),tanscodeVideo,deleteOriginal, cr
     //console.log('Originalname：%s', file.originalname);
     //console.log('File.size：%s', file.size);
     //console.log('File.path：%s', file.path);
-   // console.log('File.name：%s', file.filename);
+    console.log('File.name：%s', file.filename);
     //res.render("qr",{linkVar:file.filename.split(".")[0]});
     res.redirect("/qr/"+file.filename.split(".")[0]);
     //res.send("Upload Successful");
