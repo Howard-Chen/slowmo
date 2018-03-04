@@ -175,7 +175,7 @@ app.get("/gallery", function(req, res) {
         else {
             obj.reverse();
             
-            res.render("gallery", { obj: obj.slice(0,20) });
+            res.render("gallery", { obj: obj.slice(0,50) });
         }
     });
 
